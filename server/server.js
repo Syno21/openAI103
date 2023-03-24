@@ -45,4 +45,4 @@ app.post('/', async (req, res) => {
   }
 })
 
-app.listen(5000, () => console.log('AI server started on https://openai103media.onrender.com'))
+app.listen(5000, () => console.log('AI server started on https://one03openai.onrender.com'))
