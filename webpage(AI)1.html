@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat with ChatGPT</title>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script>
+		function sendMessage() {
+			var inputBox = document.getElementById("input-box");
+			var displayBox = document.getElementById("display-box");
+			var userInput = inputBox.value;
+
+			if (userInput === "") {
+				return;
+			}
+
+			axios.post('https://api.openai.com/v1/engine/davinci-codex/completions', {
+				prompt: userInput,
+				max_tokens: 60,
+				n: 1,
+				stop: ["\n"]
+			}, {
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': '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'
+				}
+			})
+			.then(function (response) {
+				var text = response.data.choices[0].text.trim();
+				displayBox.innerHTML += '<p><strong>You:</strong> ' + userInput + '</p>';
+				displayBox.innerHTML += '<p><strong>ChatGPT:</strong> ' + text + '</p>';
+				inputBox.value = "";
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+		}
+	</script>
+</head>
+<body>
+	<h1>Chat with ChatGPT</h1>
+	<div id="display-box"></div>
+	<input type="text" id="input-box" onkeydown="if(event.keyCode == 13) {sendMessage();}" />
+	<button onclick="sendMessage()">Send</button>
+</body>
+</html>
+
+
+
+
+
+
