@@ -85,7 +85,7 @@ const handleSubmit = async (e) => {
 
     // messageDiv.innerHTML = "..."
     loader(messageDiv); 
-
+//https://one03openai.onrender.com
     const response = await fetch('https://one03openai.onrender.com', {
         method: 'POST',
         headers: {
